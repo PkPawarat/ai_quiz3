@@ -91,10 +91,10 @@ class SimpleDrivingEnv(gym.Env):
         
         # Done by reaching goal
         if dist_to_goal < 1.5 and not self.reached_goal:
-            # print("reached goal")
+            print("reached goal")
             self.done = True
             self.reached_goal = True
-            reward += 50 # if it's reached goal add reward 50
+            reward += 500 # if it's reached goal add reward 50
             
         ob = car_ob
         
@@ -104,6 +104,7 @@ class SimpleDrivingEnv(gym.Env):
             reward += reward_
             ob.extend(obj)
         if collide:
+            print("collision with obstacle")
             reward += -100
             self.done = True
         
@@ -248,7 +249,7 @@ class SimpleDrivingEnv(gym.Env):
         dist_to_obs = math.sqrt(((carpos[0] - obsPosInCar[0]) ** 2 +
                             (carpos[1] - obsPosInCar[1]) ** 2))
         if dist_to_obs <= self.obstacle_radius:
-            reward = -50
+            reward = -100
             collide = True
             
         return observation, reward, collide

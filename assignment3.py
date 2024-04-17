@@ -51,41 +51,17 @@ import os
 #         break
 # env.close()
 
-
-# # Assignment 3: Reinforcement Learning
-# In this assignment you will apply the RL algorithms you learnt from the tutorials to a simulated robot car in a pybullet environment.
-
-# You will be asked to (percentages are allocation of assignment marks):
-# * Train the robot to drive to the green goal marker which spawns at random locations (60%)
-# * Modify the epsilon-greedy function to incorporate prior knowledge (20%)
-# * Modify the reward function (10%)
-# * Add obstacles to the environment (10%)
-
-# It is highly recommended to install pybullet and run your code locally since things will run much faster. It will also make editing the gym environment code easier.
-
-# ### Action Space
-
-# *   0: Reverse-Left
-# *   1: Reverse
-# *   2: Reverse-Right
-# *   3: Steer-Left (no throttle)
-# *   4: No throttle and no steering
-# *   5: Steer-Right (no throttle)
-# *   6: Forward-right
-# *   7: Forward
-# *   8: Forward-left
-
-TRAIN = True  # if set to false will skip training, load the last saved model and use that for testing
+TRAIN = False  # if set to false will skip training, load the last saved model and use that for testing
 USE_PREVIOUS_MODEL = True # if set to false will not use the previous model but will use the current model
 
 
 
 # Hyper parameters that will be used in the DQN algorithm
-EPISODES = 5000                 # number of episodes to run the training for
+EPISODES = 2500                 # number of episodes to run the training for
 LEARNING_RATE = 0.00005         # the learning rate for optimising the neural network weights
 MEM_SIZE = 50000                # maximum size of the replay memory - will start overwritting values once this is exceed
 REPLAY_START_SIZE = 10000       # The amount of samples to fill the replay memory with before we start learning
-BATCH_SIZE = 32                 # Number of random samples from the replay memory we use for training each iteration
+BATCH_SIZE = 64                 # Number of random samples from the replay memory we use for training each iteration
 GAMMA = 0.99                    # Discount factor
 EPS_START = 0.1                 # Initial epsilon value for epsilon greedy action sampling
 EPS_END = 0.0001                # Final epsilon value
@@ -253,8 +229,8 @@ class DQN_Solver:
 
 ############################################################################################
 ## if there is training data available. Check if the model file exists
-model_file = "policy_network_avoid_obstacle_part2_with_4obj.pkl"
-previous_model_file = "policy_network_avoid_obstacle_part1.pkl"
+model_file = "policy_network_avoid_obstacle_part3_with_4obj.pkl"
+previous_model_file = "policy_network_avoid_obstacle_part2_with_4obj.pkl"
 
 # Train network
 if TRAIN:
