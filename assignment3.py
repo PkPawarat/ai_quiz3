@@ -1,5 +1,5 @@
 import sys
-sys.path.append("./simple-driving")
+sys.path.append("./simple-car-env-template")
 
 
 import gym
@@ -103,7 +103,7 @@ average_reward = 0
 episode_history = []
 episode_reward_history = []
 np.bool = np.bool_
-
+print(torch.cuda.is_available())
 # for creating the policy and target networks - same architecture
 class Network(torch.nn.Module):
     def __init__(self, env):
@@ -114,6 +114,7 @@ class Network(torch.nn.Module):
         self.device = torch.device('cpu')
         # # self.device = torch.device('cuda:0')
         self.to(self.device)
+        
         # build an MLP with 2 hidden layers
         self.layers = torch.nn.Sequential(
             torch.nn.Linear(*self.input_shape, FC1_DIMS),   # input layer
@@ -252,8 +253,8 @@ class DQN_Solver:
 
 ############################################################################################
 ## if there is training data available. Check if the model file exists
-model_file = "policy_network_part2.pkl"
-previous_model_file = "policy_network_part2.pkl"
+model_file = "policy_network_avoid_obstacle_part2_with_4obj.pkl"
+previous_model_file = "policy_network_avoid_obstacle_part1.pkl"
 
 # Train network
 if TRAIN:
